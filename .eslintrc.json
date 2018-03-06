@@ -12,10 +12,14 @@
             "error", 4
         ],
         "no-unexpected-multiline": 2,
-        "compat/compat": 2
+        "compat/compat": 2,
+        "react/jsx-indent": [
+            "error", 4
+        ]
     },
     "parser": "babel-eslint",
     "env": {
+        "browser": true,
         "jest": true
     }
 }
