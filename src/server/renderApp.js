@@ -1,9 +1,7 @@
-// @flow
-
 import { STATIC_PATH, APP_CONTAINER_CLASS, WDS_PORT } from '../shared/config';
 import { isProd } from '../shared/util';
 
-const renderApp = (title: string) =>
+const renderApp = title =>
     `
 <!doctype html>
 <html>

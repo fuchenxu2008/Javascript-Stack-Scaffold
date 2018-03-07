@@ -1,15 +1,16 @@
-// @flow
-
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import reduxPromiseMiddleware from 'redux-promise-middleware';
 import rootReducer from './reducers';
 import { isProd } from '../shared/util';
 
+
+// eslint-disable-next-line no-underscore-dangle
+const composeEnhancers = (isProd ? null : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
 const configureStore = () => createStore(
     rootReducer,
-    (isProd ? // eslint-disable-next-line no-underscore-dangle
-        undefined : window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    ),
-    applyMiddleware(),
+    composeEnhancers(applyMiddleware(thunk, reduxPromiseMiddleware())),
 );
 
 export default configureStore;

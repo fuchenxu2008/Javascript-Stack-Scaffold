@@ -1,5 +1,3 @@
-// @flow
-
 import 'babel-polyfill';
 
 import React from 'react';
@@ -30,7 +28,6 @@ const wrapApp = (AppComponent, reduxStore) => (
 ReactDOM.render(wrapApp(App, store), rootEl);
 
 if (module.hot) {
-    // flow-disable-next-line
     module.hot.accept('./App', () => {
         // eslint-disable-next-line global-require
         const NextApp = require('./App').default;
