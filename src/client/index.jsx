@@ -2,8 +2,10 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
+import setUpSocket from './socket';
 
 import App from './App';
 import { APP_CONTAINER_SELECTOR } from '../shared/config';
@@ -19,9 +21,11 @@ if (!(rootEl instanceof Element)) {
 
 const wrapApp = (AppComponent, reduxStore) => (
     <Provider store={reduxStore}>
-        <AppContainer>
-            <AppComponent />
-        </AppContainer>
+        <BrowserRouter>
+            <AppContainer>
+                <AppComponent />
+            </AppContainer>
+        </BrowserRouter>
     </Provider>
 );
 
@@ -34,3 +38,5 @@ if (module.hot) {
         ReactDOM.render(wrapApp(NextApp, store), rootEl);
     });
 }
+
+setUpSocket(store);
